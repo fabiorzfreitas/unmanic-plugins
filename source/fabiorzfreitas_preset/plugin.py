@@ -250,7 +250,7 @@ def on_worker_process(data: dict) -> None:
     path, basename = os.path.split(abspath)
     data['path'] = abspath
     no_ext: str = os.path.splitext(basename)[0] 
-    data['file_in'] = '"' + data['file_in'] + '"'
+    data['file_in'] = f'"{data["file_in"]}"'
     file_in: str = data['file_in']
     data['file_out'] = f'"{path}/{no_ext}.cache.mkv"'
     file_out: str = data['file_out']

@@ -1,4 +1,7 @@
-**<span style="color:#56adda">1.2.0</span>**
+**<span style="color:#56adda">1.2.2</span>**
+- Trying to fix loop
+
+**<span style="color:#56adda">1.2.1</span>**
 - Last fix was not good.
 
 **<span style="color:#56adda">1.2.0</span>**
