@@ -1,0 +1,20 @@
+{
+    "author": "fabiorzfreitas",
+    "compatibility": [
+        2
+    ],
+    "description": "Applies a series of optimizations (see description) on all files",
+    "icon": "",
+    "id": "fabiorzfreitas_preset",
+    "name": "fabiorzfreitas preset",
+    "platform": [
+        "windows"
+    ],
+    "priorities": {
+        "on_worker_process": 5,
+        "on_library_management_file_test": 5,
+        "on_postprocessor_file_movement": 5
+    },
+    "tags": "",
+    "version": "1.1.1"
+}
