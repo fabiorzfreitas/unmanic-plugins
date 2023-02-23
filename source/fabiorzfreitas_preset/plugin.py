@@ -250,7 +250,6 @@ def on_worker_process(data: dict) -> None:
     path, basename = os.path.split(abspath)
     data['path'] = abspath
     no_ext: str = os.path.splitext(basename)[0] 
-    data['file_in'] = f'"{data["file_in"]}"'
     file_in: str = data['file_in']
     data['file_out'] = f'"{path}/{no_ext}.cache.mkv"'
     file_out: str = data['file_out']
@@ -275,7 +274,7 @@ def on_worker_process(data: dict) -> None:
         processing_mkv_line: str = f'[PROCESSING] File {abspath} container is not .mkv, processing'
         logger_output(processing_mkv_line)
 
-        data['exec_command'] = f'ffmpeg -i {file_in} -c copy {file_out}'
+        data['exec_command'] = f'ffmpeg -i "{file_in}" -c copy {file_out}'
 
         return
         
@@ -299,7 +298,7 @@ def on_worker_process(data: dict) -> None:
         
         for stream in data['streams']:
             if stream['codec_type'] == 'video':
-                data['exec_command'] = f'ffmpeg -i {file_in} -map 0:v:0 {video_codec} -map 0:a -c:a copy -sn -map_metadata -1 -map_chapters -1 {file_out}'
+                data['exec_command'] = f'ffmpeg -i "{file_in}" -map 0:v:0 {video_codec} -map 0:a -c:a copy -sn -map_metadata -1 -map_chapters -1 {file_out}'
     
     # Checks if first audio stream is ac3
     if ffprobe_data['streams'][1]['codec_type'] == 'audio' and ffprobe_data['streams'][1]['codec_name'] != 'ac3':
@@ -307,14 +306,14 @@ def on_worker_process(data: dict) -> None:
         processing_ac3_line: str = f'[PROCESSING] File {abspath} does not have ac3 as the first audio stream, processing'
         logger_output(processing_ac3_line)
 
-        data['exec_command'] = f'ffmpeg -i {file_in} -map 0:v:0 {video_codec} -map 0:a:0 -c:a:0 ac3 -map 0:a:0 -c:a:1 copy -sn -map_metadata -1 -map_chapters -1 {file_out}'
+        data['exec_command'] = f'ffmpeg -i "{file_in}" -map 0:v:0 {video_codec} -map 0:a:0 -c:a:0 ac3 -map 0:a:0 -c:a:1 copy -sn -map_metadata -1 -map_chapters -1 {file_out}'
         
         return
     
     # If video check matches, processing starts after checking audio
     if video_codec == '-c:v:0 x264':
         
-        data['exec_command'] = f'ffmpeg -i {file_in} -map 0:v:0 {video_codec} -map 0:a -c:a copy -sn -map_metadata -1 -map_chapters -1 {file_out}'
+        data['exec_command'] = f'ffmpeg -i "{file_in}" -map 0:v:0 {video_codec} -map 0:a -c:a copy -sn -map_metadata -1 -map_chapters -1 {file_out}'
 
         return
 
@@ -324,7 +323,7 @@ def on_worker_process(data: dict) -> None:
         processing_chapters_line: str = f'[PROCESSING] File {abspath} has chapters, processing'
         logger_output(processing_chapters_line)
 
-        data['exec_command'] = f'ffmpeg -i {file_in} -map 0:v:0 {video_codec} -map 0:a -c:a copy -sn -map_metadata -1 -map_chapters -1 {file_out}'
+        data['exec_command'] = f'ffmpeg -i "{file_in}" -map 0:v:0 {video_codec} -map 0:a -c:a copy -sn -map_metadata -1 -map_chapters -1 {file_out}'
 
         return
     
@@ -336,7 +335,7 @@ def on_worker_process(data: dict) -> None:
             processing_subtitles_line: str = f'[PROCESSING] File {abspath} has subtitles, processing'
             logger_output(processing_subtitles_line)
 
-            data['exec_command'] = f'ffmpeg -i {file_in} -map 0:v:0 {video_codec} -map 0:a -c:a copy -sn -map_metadata -1 -map_chapters -1 {file_out}'
+            data['exec_command'] = f'ffmpeg -i "{file_in}" -map 0:v:0 {video_codec} -map 0:a -c:a copy -sn -map_metadata -1 -map_chapters -1 {file_out}'
             
             return
        
@@ -345,7 +344,7 @@ def on_worker_process(data: dict) -> None:
             processing_attachment_line: str = f'[PROCESSING] File {abspath} has non-audio, non-subtitle stream, likely an attachment, processing'
             logger_output(processing_attachment_line)
 
-            data['exec_command'] = f'ffmpeg -i {file_in} -map 0:v:0 {video_codec} -map 0:a -c:a copy -sn -map_metadata -1 -map_chapters -1 {file_out}'
+            data['exec_command'] = f'ffmpeg -i "{file_in}" -map 0:v:0 {video_codec} -map 0:a -c:a copy -sn -map_metadata -1 -map_chapters -1 {file_out}'
 
             return
 
@@ -355,7 +354,7 @@ def on_worker_process(data: dict) -> None:
             processing_tags_line: str = f'[PROCESSING] File {abspath} has unwanted metadata, processing'
             logger_output(processing_tags_line)
 
-            data['exec_command'] = f'ffmpeg -i {file_in} -map 0:v:0 {video_codec} -map 0:a -c:a copy -sn -map_metadata -1 -map_chapters -1 {file_out}'
+            data['exec_command'] = f'ffmpeg -i "{file_in}" -map 0:v:0 {video_codec} -map 0:a -c:a copy -sn -map_metadata -1 -map_chapters -1 {file_out}'
             
             return
 

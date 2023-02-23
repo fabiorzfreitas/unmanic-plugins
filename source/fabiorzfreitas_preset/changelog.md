@@ -1,3 +1,6 @@
+**<span style="color:#56adda">1.2.3</span>**
+- Different quote fix
+
 **<span style="color:#56adda">1.2.2</span>**
 - Trying to fix loop
 
