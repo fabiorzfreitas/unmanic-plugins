@@ -24,6 +24,9 @@ Thumbs.db
 *.mov
 *.wmv
 
+# Repo directory
+repo/
+
 # Scripts directory
 scripts/
 
