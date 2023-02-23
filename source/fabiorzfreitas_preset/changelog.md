@@ -1,4 +1,7 @@
-**<span style="color:#56adda">1.1.0</span>**
+**<span style="color:#56adda">1.2.0</span>**
+- Fixed quotes around filenames.
+
+**<span style="color:#56adda">1.1.1</span>**
 - Small fix on logger output.
 
 **<span style="color:#56adda">1.1.0</span>**
