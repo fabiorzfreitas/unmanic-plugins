@@ -1,3 +1,6 @@
+**<span style="color:#56adda">1.6.0</span>**
+- FFmpeg -y.
+
 **<span style="color:#56adda">1.5.0</span>**
 - Minor errors.
 
