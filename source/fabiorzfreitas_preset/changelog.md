@@ -1,3 +1,6 @@
+**<span style="color:#56adda">1.5.0</span>**
+- Minor errors.
+
 **<span style="color:#56adda">1.4.0</span>**
 - FFProbe_data['streams'] fix.
 

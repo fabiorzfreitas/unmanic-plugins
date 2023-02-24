@@ -201,17 +201,19 @@ def on_library_management_file_test(data: dict) -> None:
             shared_info['has_attachment'] = True
 
             return
+        
+        if 'tags' in stream:
 
-        allowed_tags: list = ['language', 'DURATION', 'ENCODER']
-        if not set(stream['tags'].keys()).issubset(allowed_tags):
+            allowed_tags: list = ['language', 'DURATION', 'ENCODER']
+            if not set(stream['tags'].keys()).issubset(allowed_tags):
             
-            testing_tags_line: str = f'[TESTING] File {abspath} has unwanted metadata, adding to queue'
-            logger_output(testing_tags_line)
+                testing_tags_line: str = f'[TESTING] File {abspath} has unwanted metadata, adding to queue'
+                logger_output(testing_tags_line)
 
-            data['add_file_to_pending_tasks'] = True
-            shared_info['has_unwanted_metadata'] = True
+                data['add_file_to_pending_tasks'] = True
+                shared_info['has_unwanted_metadata'] = True
 
-            return
+                return
 
     # If file passes all checks, it's skipped    
     testing_skip_line: str = f"[TESTING] File {abspath} doesn't need processing, skipping"
