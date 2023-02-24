@@ -1,4 +1,7 @@
-**<span style="color:#56adda">1.3.0</span>**
+**<span style="color:#56adda">1.3.2</span>**
+- Another quote fix.
+
+**<span style="color:#56adda">1.3.1</span>**
 - Now that file_out is fixed, improved quotes.
 
 **<span style="color:#56adda">1.3.0</span>**
