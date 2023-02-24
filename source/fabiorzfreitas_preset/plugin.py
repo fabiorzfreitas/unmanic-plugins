@@ -149,7 +149,7 @@ def on_library_management_file_test(data: dict) -> None:
         
         data['add_file_to_pending_tasks'] = True
         
-        for stream in data['streams']:
+        for stream in ffprobe_data['streams']:
             if stream['codec_type'] == 'video':
                 shared_info['non_0_video_stream'] = True
                 shared_info['video_stream_index'] = stream['index']
@@ -296,7 +296,7 @@ def on_worker_process(data: dict) -> None:
         processing_video_0_line: str = f'[PROCESSING] File {abspath} does not have video as the first stream, processing'
         logger_output(processing_video_0_line)
         
-        for stream in data['streams']:
+        for stream in ffprobe_data['streams']:
             if stream['codec_type'] == 'video':
                 data['exec_command'] = f'ffmpeg -i {file_in} -map 0:v:0 {video_codec} -map 0:a -c:a copy -sn -map_metadata -1 -map_chapters -1 {file_out}'
     

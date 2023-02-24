@@ -1,3 +1,6 @@
+**<span style="color:#56adda">1.4.0</span>**
+- FFProbe_data['streams'] fix.
+
 **<span style="color:#56adda">1.3.2</span>**
 - Another quote fix.
 
