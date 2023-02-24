@@ -1,4 +1,7 @@
 **<span style="color:#56adda">1.3.0</span>**
+- Now that file_out is fixed, improved quotes.
+
+**<span style="color:#56adda">1.3.0</span>**
 - Perhaps cache file is the issue.
 
 **<span style="color:#56adda">1.2.3</span>**
