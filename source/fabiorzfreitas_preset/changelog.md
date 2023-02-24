@@ -1,8 +1,11 @@
+**<span style="color:#56adda">1.3.0</span>**
+- Perhaps cache file is the issue.
+
 **<span style="color:#56adda">1.2.3</span>**
-- Different quote fix
+- Different quote fix.
 
 **<span style="color:#56adda">1.2.2</span>**
-- Trying to fix loop
+- Trying to fix loop.
 
 **<span style="color:#56adda">1.2.1</span>**
 - Last fix was not good.
