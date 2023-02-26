@@ -1,3 +1,6 @@
+**<span style="color:#56adda">1.6.1</span>**
+- data['exec_command'] now is list.
+
 **<span style="color:#56adda">1.6.0</span>**
 - FFmpeg -y.
 
