@@ -255,7 +255,7 @@ def on_worker_process(data: dict) -> None:
     file_in: str = data['file_in']
     data['file_out'] = f'{path}/{no_ext}.cache.mkv'
     file_out: str = data['file_out']
-    video_codec: str = '-c:v:0 copy'
+    video_codec: str = 'copy'
 
     # Get file probe
     probe = Probe.init_probe(data, logger, allowed_mimetypes=['video'])
@@ -288,7 +288,7 @@ def on_worker_process(data: dict) -> None:
             processing_x264_line: str = f'[PROCESSING] File {abspath} video stream is not x264, setting video codec'
             logger_output(processing_x264_line)
 
-            video_codec: str = '-c:v:0 h264' # type: ignore
+            video_codec: str = 'h264' # type: ignore
             break
             # This function doesn't return yet, as the file still needs to be checked for audio
         
@@ -300,7 +300,7 @@ def on_worker_process(data: dict) -> None:
         
         for stream in ffprobe_data['streams']:
             if stream['codec_type'] == 'video':
-                data['exec_command'] = ['ffmpeg', '-y', '-i', f'{file_in}', '-map', '0:v:0', f'{video_codec}', '-map', '0:a', '-c:a', 'copy', '-sn', '-map_metadata', '-1', '-map_chapters', '-1', f'{file_out}']
+                data['exec_command'] = ['ffmpeg', '-y', '-i', f'{file_in}', '-map', '0:v:0', '-c:v:0', f'{video_codec}', '-map', '0:a', '-c:a', 'copy', '-sn', '-map_metadata', '-1', '-map_chapters', '-1', f'{file_out}']
     
     # Checks if first audio stream is ac3
     if ffprobe_data['streams'][1]['codec_type'] == 'audio' and ffprobe_data['streams'][1]['codec_name'] != 'ac3':
@@ -308,7 +308,7 @@ def on_worker_process(data: dict) -> None:
         processing_ac3_line: str = f'[PROCESSING] File {abspath} does not have ac3 as the first audio stream, processing'
         logger_output(processing_ac3_line)
 
-        data['exec_command'] = ['ffmpeg', '-y', '-i', f'{file_in}', '-map', '0:v:0', f'{video_codec}', '-map', '0:a:0', '-c:a:0', 'ac3', '-map', '0:a:0', '-c:a:1', 'copy', '-sn', '-map_metadata', '-1', '-map_chapters', '-1', f'{file_out}']
+        data['exec_command'] = ['ffmpeg', '-y', '-i', f'{file_in}', '-map', '0:v:0', '-c:v:0', f'{video_codec}', '-map', '0:a:0', '-c:a:0', 'ac3', '-map', '0:a:0', '-c:a:1', 'copy', '-sn', '-map_metadata', '-1', '-map_chapters', '-1', f'{file_out}']
     
         
         return
@@ -316,7 +316,7 @@ def on_worker_process(data: dict) -> None:
     # If video check matches, processing starts after checking audio
     if video_codec == '-c:v:0 x264':
         
-        data['exec_command'] = ['ffmpeg', '-y', '-i', f'{file_in}', '-map', '0:v:0', f'{video_codec}', '-map', '0:a', '-c:a', 'copy', '-sn', '-map_metadata', '-1', '-map_chapters', '-1', f'{file_out}']
+        data['exec_command'] = ['ffmpeg', '-y', '-i', f'{file_in}', '-map', '0:v:0', '-c:v:0', f'{video_codec}', '-map', '0:a', '-c:a', 'copy', '-sn', '-map_metadata', '-1', '-map_chapters', '-1', f'{file_out}']
 
         return
 
@@ -326,7 +326,7 @@ def on_worker_process(data: dict) -> None:
         processing_chapters_line: str = f'[PROCESSING] File {abspath} has chapters, processing'
         logger_output(processing_chapters_line)
 
-        data['exec_command'] = ['ffmpeg', '-y', '-i', f'{file_in}', '-map', '0:v:0', f'{video_codec}', '-map', '0:a',  '-c:a', 'copy', '-sn', '-map_metadata', '-1', '-map_chapters', '-1', f'{file_out}']
+        data['exec_command'] = ['ffmpeg', '-y', '-i', f'{file_in}', '-map', '0:v:0', '-c:v:0', f'{video_codec}', '-map', '0:a',  '-c:a', 'copy', '-sn', '-map_metadata', '-1', '-map_chapters', '-1', f'{file_out}']
 
         return
     
@@ -338,7 +338,7 @@ def on_worker_process(data: dict) -> None:
             processing_subtitles_line: str = f'[PROCESSING] File {abspath} has subtitles, processing'
             logger_output(processing_subtitles_line)
 
-            data['exec_command'] = ['ffmpeg', '-y', '-i', f'{file_in}', '-map', '0:v:0', f'{video_codec}', '-map', '0:a', '-c:a', 'copy', '-sn', '-map_metadata', '-1', '-map_chapters', '-1', f'{file_out}']
+            data['exec_command'] = ['ffmpeg', '-y', '-i', f'{file_in}', '-map', '0:v:0', '-c:v:0', f'{video_codec}', '-map', '0:a', '-c:a', 'copy', '-sn', '-map_metadata', '-1', '-map_chapters', '-1', f'{file_out}']
             
             return
        
@@ -347,7 +347,7 @@ def on_worker_process(data: dict) -> None:
             processing_attachment_line: str = f'[PROCESSING] File {abspath} has non-audio, non-subtitle stream, likely an attachment, processing'
             logger_output(processing_attachment_line)
 
-            data['exec_command'] = ['ffmpeg', '-y', '-i', f'{file_in}', '-map', '0:v:0', f'{video_codec}', '-map', '0:a', '-c:a', 'copy', '-sn', '-map_metadata', '-1', '-map_chapters', '-1', f'{file_out}']
+            data['exec_command'] = ['ffmpeg', '-y', '-i', f'{file_in}', '-map', '0:v:0', '-c:v:0', f'{video_codec}', '-map', '0:a', '-c:a', 'copy', '-sn', '-map_metadata', '-1', '-map_chapters', '-1', f'{file_out}']
 
             return
 
@@ -357,7 +357,7 @@ def on_worker_process(data: dict) -> None:
             processing_tags_line: str = f'[PROCESSING] File {abspath} has unwanted metadata, processing'
             logger_output(processing_tags_line)
 
-            data['exec_command'] = ['ffmpeg', '-y', '-i', f'{file_in}', '-map', '0:v:0', f'{video_codec}', '-map', '0:a', '-c:a', 'copy', '-sn', '-map_metadata', '-1', '-map_chapters', '-1', f'{file_out}']
+            data['exec_command'] = ['ffmpeg', '-y', '-i', f'{file_in}', '-map', '0:v:0', '-c:v:0', f'{video_codec}', '-map', '0:a', '-c:a', 'copy', '-sn', '-map_metadata', '-1', '-map_chapters', '-1', f'{file_out}']
             
             return
 

@@ -1,3 +1,6 @@
+**<span style="color:#56adda">2.1.0</span>**
+- Video_codec.
+
 **<span style="color:#56adda">2.0.1</span>**
 - Minor FFmpeg.
 
