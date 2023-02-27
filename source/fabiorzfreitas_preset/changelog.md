@@ -1,3 +1,6 @@
+**<span style="color:#56adda">1.6.2</span>**
+- Revert last change.
+- 
 **<span style="color:#56adda">1.6.1</span>**
 - data['exec_command'] now is list.
 
