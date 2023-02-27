@@ -1,0 +1,31 @@
+{
+    "repo": {
+        "id": "fabiorzfreitas_repo",
+        "name": "fabiorzfreitas repo",
+        "icon": "",
+        "repo_data_directory": "https://raw.githubusercontent.com/fabiorzfreitas/unmanic-plugins/repo/",
+        "repo_data_url": "https://raw.githubusercontent.com/fabiorzfreitas/unmanic-plugins/repo/repo.json"
+    },
+    "plugins": [
+        {
+            "author": "fabiorzfreitas",
+            "compatibility": [
+                2
+            ],
+            "description": "Applies a series of optimizations (see description) on all files",
+            "icon": "",
+            "id": "fabiorzfreitas_preset",
+            "name": "fabiorzfreitas preset",
+            "platform": [
+                "windows"
+            ],
+            "priorities": {
+                "on_worker_process": 5,
+                "on_library_management_file_test": 5,
+                "on_postprocessor_file_movement": 5
+            },
+            "tags": "",
+            "version": "2.1.0"
+        }
+    ]
+}
