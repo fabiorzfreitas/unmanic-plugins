@@ -1,3 +1,6 @@
+**<span style="color:#56adda">1.7.2</span>**
+- Removed quotes.
+
 **<span style="color:#56adda">1.7.1</span>**
 - Commas.
 
