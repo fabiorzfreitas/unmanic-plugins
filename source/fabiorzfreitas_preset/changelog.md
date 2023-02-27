@@ -1,4 +1,7 @@
-**<span style="color:#56adda">1.8.0</span>**
+**<span style="color:#56adda">2.0.1</span>**
+- Minor FFmpeg.
+
+**<span style="color:#56adda">2.0.0</span>**
 - FFmpeg fix.
 
 **<span style="color:#56adda">1.7.2</span>**
