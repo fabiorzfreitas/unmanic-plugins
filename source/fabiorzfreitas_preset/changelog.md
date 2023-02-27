@@ -1,3 +1,6 @@
+**<span style="color:#56adda">1.8.0</span>**
+- FFmpeg fix.
+
 **<span style="color:#56adda">1.7.2</span>**
 - Removed quotes.
 
